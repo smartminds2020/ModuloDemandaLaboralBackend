@@ -21,6 +21,8 @@ public class Curso implements Serializable {
     
     private Programa idPrograma;
     
+    private String codAsignatura;
+    
     private List<Preferencia> preferenciaList;
 
     public Curso() {
@@ -103,6 +105,14 @@ public class Curso implements Serializable {
         this.preferenciaList = preferenciaList;
     }
 
+	public String getCodAsignatura() {
+		return codAsignatura;
+	}
+
+	public void setCodAsignatura(String codAsignatura) {
+		this.codAsignatura = codAsignatura;
+	}
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -129,7 +139,7 @@ public class Curso implements Serializable {
 	public String toString() {
 		return "Curso [idCurso=" + idCurso + ", nomCurso=" + nomCurso + ", numciclo=" + numciclo + ", numcreditaje="
 				+ numcreditaje + ", tipocurso=" + tipocurso + ", planestudios=" + planestudios + ", idPrograma="
-				+ idPrograma + ", preferenciaList=" + preferenciaList + "]";
+				+ idPrograma + ", codAsignatura=" + codAsignatura + ", preferenciaList=" + preferenciaList + "]";
 	}
    
 }

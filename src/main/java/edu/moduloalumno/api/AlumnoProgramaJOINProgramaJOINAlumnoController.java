@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.entity.AlumnoProgramaJOINProgramaJOINAlumno;
 import edu.moduloalumno.entity.AlumnoSemestre;
 import edu.moduloalumno.entity.Curriculo;
+import edu.moduloalumno.entity.Curso;
 import edu.moduloalumno.entity.PerfilEgreso;
 import edu.moduloalumno.entity.Presupuesto;
 import edu.moduloalumno.entity.Programa;
@@ -27,8 +28,6 @@ import edu.moduloalumno.util.Operaciones;
 @RestController
 @RequestMapping("alumno/alumnoprograma/programa")
 public class AlumnoProgramaJOINProgramaJOINAlumnoController {
-	
-	//Aprendi por fin, gracias dios. comit numero 2
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -221,7 +220,7 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoController {
 		return new ResponseEntity<List<Curriculo>>(curriculos, HttpStatus.OK);
 	}
         
-        @RequestMapping(value = "/curriculo/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/curriculo/{id_programa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curriculo>> getCurriculoPrograma(@PathVariable("id_programa") Integer id_programa) {
 		logger.info("> getSemestres [Semestre]");
 
