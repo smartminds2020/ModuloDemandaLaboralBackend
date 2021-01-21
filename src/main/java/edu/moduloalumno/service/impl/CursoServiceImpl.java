@@ -30,4 +30,22 @@ public class CursoServiceImpl implements ICursoService {
 	public List<Curso> getCursosByIdProgramaAndPlanEstudio(int idPrograma, String planEstudio) {
 		return CursoDAO.getCursosByIdProgramaAndPlanEstudio(idPrograma, planEstudio);
 	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(Integer idPrograma,
+			String planestudio, Integer area, Integer naturaleza) {
+		return CursoDAO.getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(idPrograma, planestudio, area, naturaleza);
+	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndArea(Integer idPrograma, String planestudio,
+			Integer area) {
+		return CursoDAO.getCursosByIdProgramaAndPlanEstudioAndArea(idPrograma, planestudio, area);
+	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndNaturaleza(Integer idPrograma, String planestudio,
+			Integer naturaleza) {
+		return CursoDAO.getCursosByIdProgramaAndPlanEstudioAndNaturaleza(idPrograma, planestudio, naturaleza);
+	}
 }

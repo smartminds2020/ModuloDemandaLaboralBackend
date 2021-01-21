@@ -90,4 +90,70 @@ public class CursoController {
 		logger.info("< getCursoIdByNombresApellidos [Curso]");
 		return new ResponseEntity<List<Curso>>(list, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "programa/{idPrograma}/planestudio/{planestudio}/area/{area}/naturaleza/{naturaleza}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Curso>> getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(@PathVariable("idPrograma") Integer idPrograma, @PathVariable("planestudio") String planestudio, @PathVariable("area") Integer area, @PathVariable("naturaleza") Integer naturaleza) {
+		logger.info("> getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza [Cursos]");
+
+		List<Curso> list = null;
+
+		try {
+			list = service.getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(idPrograma, planestudio, area, naturaleza);
+			
+			if (list == null) {
+				list = new ArrayList<Curso>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Curso>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza [Cursos]");
+		return new ResponseEntity<List<Curso>>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "programa/{idPrograma}/planestudio/{planestudio}/area/{area}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Curso>> getCursosByIdProgramaAndPlanEstudioAndArea(@PathVariable("idPrograma") Integer idPrograma, @PathVariable("planestudio") String planestudio, @PathVariable("area") Integer area) {
+		logger.info("> getCursosByIdProgramaAndPlanEstudioAndArea [Cursos]");
+
+		List<Curso> list = null;
+
+		try {
+			list = service.getCursosByIdProgramaAndPlanEstudioAndArea(idPrograma, planestudio, area);
+			
+			if (list == null) {
+				list = new ArrayList<Curso>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Curso>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getCursosByIdProgramaAndPlanEstudioAndArea [Curso]");
+		return new ResponseEntity<List<Curso>>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "programa/{idPrograma}/planestudio/{planestudio}/naturaleza/{naturaleza}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Curso>> getCursosByIdProgramaAndPlanEstudioAndNaturaleza(@PathVariable("idPrograma") Integer idPrograma, @PathVariable("planestudio") String planestudio, @PathVariable("naturaleza") Integer naturaleza) {
+		logger.info("> getCursosByIdProgramaAndPlanEstudioAndNaturaleza [Cursos]");
+
+		List<Curso> list = null;
+
+		try {
+			list = service.getCursosByIdProgramaAndPlanEstudioAndNaturaleza(idPrograma, planestudio, naturaleza);
+			
+			if (list == null) {
+				list = new ArrayList<Curso>();
+			}
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<Curso>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		logger.info("< getCursosByIdProgramaAndPlanEstudioAndNaturaleza [Curso]");
+		return new ResponseEntity<List<Curso>>(list, HttpStatus.OK);
+	}
 }

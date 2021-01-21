@@ -10,4 +10,13 @@ public interface ICursoDAO {
 	List<Curso> getCursosByIdPrograma(int idPrograma);
 
 	List<Curso> getCursosByIdProgramaAndPlanEstudio(int idPrograma, String planEstudio);
+
+	List<Curso> getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(Integer idPrograma, String planestudio,
+			Integer area, Integer naturaleza);
+
+	List<Curso> getCursosByIdProgramaAndPlanEstudioAndArea(Integer idPrograma, String planestudio, Integer area);
+
+	List<Curso> getCursosByIdProgramaAndPlanEstudioAndNaturaleza(Integer idPrograma, String planestudio,
+			Integer naturaleza);
+	
 }

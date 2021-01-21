@@ -45,18 +45,80 @@ public class CursoDAOImpl implements ICursoDAO {
 
 	@Override
 	public List<Curso> getCursosByIdProgramaAndPlanEstudio(int idPrograma, String planEstudio) {
-//		try {
-//			String sql = "SELECT id_curso, nom_curso, id_programa, numciclo, numcreditaje, tipocurso, planestudios, cod_asignatura FROM curso WHERE id_programa = ? AND planestudio = ?";
-//			RowMapper<Curso> rowMapper = new CursoRowMapper();
-//			List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, idPrograma, planEstudio);
-//			return cursos;
-//		} catch (EmptyResultDataAccessException e) {
-//			return null;
-//		}
-		String sql = "SELECT id_curso, nom_curso, id_programa, numciclo, numcreditaje, tipocurso, planestudios, cod_asignatura FROM curso WHERE id_programa = ? AND planestudios = ?";
-		RowMapper<Curso> rowMapper = new CursoRowMapper();
-		List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, idPrograma, planEstudio);
-		return cursos;
+		try {
+			String sql = "SELECT id_curso, nom_curso, id_programa, numciclo, numcreditaje, tipocurso, planestudios, cod_asignatura FROM curso WHERE id_programa = ? AND planestudios = ?";
+			RowMapper<Curso> rowMapper = new CursoRowMapper();
+			List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, idPrograma, planEstudio);
+			return cursos;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndAreaAndAreaAndNaturaleza(Integer idPrograma,
+			String planestudio, Integer area, Integer naturaleza) {
+		try {
+			String sql = "SELECT c.id_curso, c.nom_curso, c.id_programa, c.numciclo, c.numcreditaje, c.tipocurso, c.planestudios,\n" + 
+					"c.cod_asignatura\n" + 
+					"	FROM curso c, area_curso ac, area a, naturaleza n, naturaleza_curso nc\n" + 
+					"	WHERE\n" + 
+					"		c.id_curso = ac.id_curso and\n" + 
+					"		ac.area_id = a.area_id and\n" + 
+					"		c.id_curso = nc.id_curso and\n" + 
+					"		nc.id_naturaleza = n.id_naturaleza and\n" + 
+					"		a.area_id = ? and\n" + 
+					"		n.id_naturaleza = ? and\n" + 
+					"		c.id_programa = ? and\n" + 
+					"		c.planestudios = ?;";
+			RowMapper<Curso> rowMapper = new CursoRowMapper();
+			List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, area, naturaleza,idPrograma, planestudio);
+			return cursos;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndArea(Integer idPrograma, String planestudio,
+			Integer area) {
+		try {
+			String sql = "SELECT c.id_curso, c.nom_curso, c.id_programa, c.numciclo, c.numcreditaje, c.tipocurso, c.planestudios,\n" + 
+					"c.cod_asignatura\n" + 
+					"	FROM curso c, area_curso ac, area a\n" + 
+					"	WHERE\n" + 
+					"		c.id_curso = ac.id_curso and\n" + 
+					"		ac.area_id = a.area_id and\n" + 
+					"		a.area_id = ? and\n" + 
+					"		c.id_programa = ? and\n" + 
+					"		c.planestudios = ?;";
+			RowMapper<Curso> rowMapper = new CursoRowMapper();
+			List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, area, idPrograma, planestudio);
+			return cursos;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Curso> getCursosByIdProgramaAndPlanEstudioAndNaturaleza(Integer idPrograma, String planestudio,
+			Integer naturaleza) {
+		try {
+			String sql = "SELECT c.id_curso, c.nom_curso, c.id_programa, c.numciclo, c.numcreditaje, c.tipocurso, c.planestudios,\n" + 
+					"c.cod_asignatura\n" + 
+					"	FROM curso c, naturaleza n, naturaleza_curso nc\n" + 
+					"	WHERE\n" + 
+					"		c.id_curso = nc.id_curso and\n" + 
+					"		nc.id_naturaleza = n.id_naturaleza and\n" + 
+					"		n.id_naturaleza = ? and\n" + 
+					"		c.id_programa = ? and\n" + 
+					"		c.planestudios = ?;";
+			RowMapper<Curso> rowMapper = new CursoRowMapper();
+			List<Curso> cursos = jdbcTemplate.query(sql, rowMapper, naturaleza, idPrograma, planestudio);
+			return cursos;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }
